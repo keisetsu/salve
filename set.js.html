@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: set.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+    <link type="text/css" rel="stylesheet" href="styles/mangalam.css">
+</head>
+
+<body>
+
+
+<div id="main">
+
+    <h1 class="page-title">Source: set.js</h1>
+
+    
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source"><code>/**
+ * @module set
+ * @desc Naive set implementation.
+ * @author Louis-Dominique Dubeau
+ * @license MPL 2.0
+ * @copyright 2013 Mangalam Research Center for Buddhist Languages
+ */
+define(/** @lends module:set */function (require, exports, module) {
+'use strict';
+
+/**
+ * @classdesc &lt;p>This is a naive implementation of sets. It stores all
+ * elements in an array. All array manipulations are done by searching
+ * through the array from start to hit. So when adding a new element
+ * to the Set for instance, the add method will scan the whole array,
+ * find the element is not there and then add the element at the end
+ * of the array. As naive as this implementation is, it has been shown
+ * to be faster than {@link module:hashstructs~HashSet HashSet} and
+ * when used in the context of this library.&lt;/p>
+ *
+ * &lt;p>Note that Set cannot hold undefined values.&lt;/p>
+ *
+ * @constructor
+ *
+ * @param {module:set~Set|Array} initial The value to initialize the set
+ * with. If a Set, then the new Set will be a clone of the
+ * parameter. If an Array, then the new Set will be initialized with
+ * the Array. If something else, then the new Set will contain
+ * whatever value was passed.
+ */
+function Set(initial) {
+    if (initial !== undefined) {
+        if (initial instanceof Set)
+            this.b = initial.b.concat([]);
+        else if (initial instanceof Array) {
+            this.b = [];
+            for (var i = 0; i &lt; initial.length; ++i)
+                this.add(initial[i]);
+        }
+        else
+            this.b = [initial];
+    }
+    else
+        this.b = [];
+}
+
+Set.prototype.b = undefined;
+
+/**
+ * Adds a value to the set.
+ *
+ * @param value The value to add.
+ */
+Set.prototype.add = function (value) {
+    var t = this.b.indexOf(value);
+    if (t &lt; 0)
+        this.b.push(value);
+};
+
+/**
+ * Destructively adds the elements of another set to this set.
+ *
+ * @param {module:set~Set} s The set to add.
+ * @throws {Error} If &lt;code>s&lt;/code> is not a Set object
+ */
+Set.prototype.union = function (s) {
+    if (s === null || s === undefined)
+        return;
+    if (!(s instanceof Set))
+        throw new Error("union with non-Set");
+    var len = s.b.length;
+    for (var i = 0; i &lt; len; ++i)
+        this.add(s.b[i]);
+};
+
+/**
+ * Selects a subset of values.
+ *
+ * @param {Function} f A function that selects values. It is called
+ * with each value. If the value happens to be an &lt;code>Array&lt;/code>
+ * then the function is &lt;emph>applied&lt;/emph> to this array. A return
+ * value which is truthy includes the value, otherwise the value is
+ * excluded.
+ * @returns An object of the same class as the object on which the
+ * method is called. This object contains only the value selected by
+ * the function.
+ */
+Set.prototype.filter = function (f) {
+    var ret = new this.constructor();
+    // Yep, we cheat
+    ret.b = this.b.filter(f);
+    return ret;
+};
+
+/**
+ * This method works like Array.map but with a provision for
+ * eliminating elements from the resulting Set.
+ *
+ * @param {Function} f This parameter plays the same role as for
+ * Array.map. However, when it returns an undefined value, this
+ * return value is not added to the Set that will be returned.
+ *
+ * @returns The new set. This set is of the same class as the original
+ * set.
+ */
+Set.prototype.map = function (f) {
+    var ret = new this.constructor();
+    for (var i = 0; i &lt; this.b.length; ++i) {
+        var result = f(this.b[i]);
+
+        // Undefined is not added.
+        if (result !== undefined)
+            ret.add(result);
+    }
+    return ret;
+};
+
+/**
+ * Applies a function on each value stored in the set.
+ *
+ * @param {Function} f A function which accepts one parameter. The
+ * function will be called on each value.
+ */
+Set.prototype.forEach = function (f) {
+    this.b.forEach(f);
+};
+
+/**
+ * Converts the set to a string.
+ *
+ * @returns {string} All the values, joined with ", ".
+ */
+Set.prototype.toString = function () {
+    return this.b.join(", ");
+};
+
+/**
+ * @returns {integer} The number of values stored.
+ */
+Set.prototype.size = function () {
+    return this.b.length;
+};
+
+/**
+ * Determines whether or not this set has the parameter passed.
+ *
+ *
+ * @param obj The object which we want to look for.
+ *
+ * @returns {boolean} True if the object is present, false if not.
+ */
+Set.prototype.has = function(obj) {
+    return this.b.indexOf(obj) >= 0;
+};
+
+/**
+ * Converts the object on which this method is called to an array.
+ *
+ * @returns {Array} An array that corresponds to the object.
+ *
+ */
+Set.prototype.toArray = function () {
+    return this.b.slice();
+};
+
+// End of Set
+
+exports.Set = Set;
+});
+
+// LocalWords:  hashstructs HashSet Dubeau MPL Mangalam LocalWords
+// LocalWords:  param truthy
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Index</a></h2><h3>Modules</h3><ul><li><a href="module-formats.html">formats</a></li><li><a href="module-hashstructs.html">hashstructs</a></li><li><a href="module-name_resolver.html">name_resolver</a></li><li><a href="module-oop.html">oop</a></li><li><a href="module-patterns.html">patterns</a></li><li><a href="module-set.html">set</a></li><li><a href="module-util.html">util</a></li><li><a href="module-validate.html">validate</a></li></ul><h3>Classes</h3><ul><li><a href="module-formats-V1JSONWalker.html">formats~V1JSONWalker</a></li><li><a href="module-hashstructs-HashBase.html">hashstructs~HashBase</a></li><li><a href="module-hashstructs-HashMap.html">hashstructs~HashMap</a></li><li><a href="module-hashstructs-HashSet.html">hashstructs~HashSet</a></li><li><a href="module-name_resolver-NameResolver.html">name_resolver~NameResolver</a></li><li><a href="module-patterns-Attribute.html">patterns~Attribute</a></li><li><a href="module-patterns-AttributeNameError.html">patterns~AttributeNameError</a></li><li><a href="module-patterns-AttributeValueError.html">patterns~AttributeValueError</a></li><li><a href="module-patterns-AttributeWalker.html">patterns~AttributeWalker</a></li><li><a href="module-patterns-Choice.html">patterns~Choice</a></li><li><a href="module-patterns-ChoiceError.html">patterns~ChoiceError</a></li><li><a href="module-patterns-ChoiceWalker.html">patterns~ChoiceWalker</a></li><li><a href="module-patterns-Define.html">patterns~Define</a></li><li><a href="module-patterns-DefineWalker.html">patterns~DefineWalker</a></li><li><a href="module-patterns-DisallowedElementWalker.html">patterns~DisallowedElementWalker</a></li><li><a href="module-patterns-Element.html">patterns~Element</a></li><li><a href="module-patterns-ElementNameError.html">patterns~ElementNameError</a></li><li><a href="module-patterns-ElementWalker.html">patterns~ElementWalker</a></li><li><a href="module-patterns-Empty.html">patterns~Empty</a></li><li><a href="module-patterns-EmptyWalker.html">patterns~EmptyWalker</a></li><li><a href="module-patterns-EName.html">patterns~EName</a></li><li><a href="module-patterns-Event.html">patterns~Event</a></li><li><a href="module-patterns-Grammar.html">patterns~Grammar</a></li><li><a href="module-patterns-GrammarWalker.html">patterns~GrammarWalker</a></li><li><a href="module-patterns-Group.html">patterns~Group</a></li><li><a href="module-patterns-GroupWalker.html">patterns~GroupWalker</a></li><li><a href="module-patterns-NoSubwalker.html">patterns~NoSubwalker</a></li><li><a href="module-patterns-NotAllowed.html">patterns~NotAllowed</a></li><li><a href="module-patterns-OneOrMore.html">patterns~OneOrMore</a></li><li><a href="module-patterns-OneOrMoreWalker.html">patterns~OneOrMoreWalker</a></li><li><a href="module-patterns-Pattern.html">patterns~Pattern</a></li><li><a href="module-patterns-PatternOnePattern.html">patterns~PatternOnePattern</a></li><li><a href="module-patterns-PatternTwoPatterns.html">patterns~PatternTwoPatterns</a></li><li><a href="module-patterns-Ref.html">patterns~Ref</a></li><li><a href="module-patterns-ReferenceError.html">patterns~ReferenceError</a></li><li><a href="module-patterns-RefWalker.html">patterns~RefWalker</a></li><li><a href="module-patterns-SingleNameError.html">patterns~SingleNameError</a></li><li><a href="module-patterns-SingleSubwalker.html">patterns~SingleSubwalker</a></li><li><a href="module-patterns-Text.html">patterns~Text</a></li><li><a href="module-patterns-TextWalker.html">patterns~TextWalker</a></li><li><a href="module-patterns-ValidationError.html">patterns~ValidationError</a></li><li><a href="module-patterns-Walker.html">patterns~Walker</a></li><li><a href="module-set-Set.html">set~Set</a></li></ul>
+</nav>
+
+<br clear="both">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.2.2</a> on Thu Dec 12 2013 18:26:48 GMT-0600 (CST)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

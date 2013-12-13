@@ -1,0 +1,1431 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Class: DisallowedElementWalker</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+    <link type="text/css" rel="stylesheet" href="styles/mangalam.css">
+</head>
+
+<body>
+
+
+<div id="main">
+
+    <h1 class="page-title">Class: DisallowedElementWalker</h1>
+
+    
+
+
+
+<section>
+    
+<header>
+    <h2>
+        <span class="ancestors"><a href="module-patterns.html">patterns</a>~</span>
+    
+    DisallowedElementWalker
+    </h2>
+    
+        <div class="class-description"><p>Walker for <a href="module-patterns-Element.html"><code>Element</code></a>. An
+instance of this class is used when an Element happens to not allow
+any contents.</p></div>
+    
+</header>  
+
+<article>
+    <div class="container-overview">
+    
+    
+    
+        
+<dt>
+    <h4 class="name" id="DisallowedElementWalker"><span class="type-signature">&lt;private> </span>new DisallowedElementWalker<span class="signature">(el)</span><span class="type-signature"></span></h4>
+    
+    
+</dt>
+<dd>
+    
+    
+
+    
+    
+    
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params">
+    <thead>
+	<tr>
+		
+		<th>Name</th>
+		
+		
+		<th>Type</th>
+		
+		
+		
+		
+		
+		<th class="last">Description</th>
+	</tr>
+	</thead>
+	
+	<tbody>
+	
+	
+        <tr>
+            
+                <td class="name"><code>el</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type"><a href="module-patterns-Element.html">module:patterns~Element</a></span>
+
+
+            
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last"><p>The pattern for which this
+walker was created.</p></td>
+        </tr>
+	
+	
+	</tbody>
+</table>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="patterns.js.html">patterns.js</a>, <a href="patterns.js.html#line2430">line 2430</a>
+    </li></ul></dd>
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+
+    
+
+    
+    
+    
+    
+    
+    
+    
+</dd>
+
+    
+    </div>
+    
+    
+        <h3 class="subsection-title">Extends</h3>
+        
+        <ul>
+            <li><a href="module-patterns-Walker.html">module:patterns~Walker</a></li>
+        </ul>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+        <h3 class="subsection-title">Methods</h3>
+        
+        <dl>
+            
+<dt>
+    <h4 class="name" id="__newID"><span class="type-signature">&lt;private> </span>__newID<span class="signature">()</span><span class="type-signature"> &rarr; {integer}</span></h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        <p>Gets a new Walker id.</p>
+    </div>
+    
+
+    
+    
+    
+    
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    <dt class="inherited-from">Inherited From:</dt>
+    <dd class="inherited-from"><ul class="dummy"><li>
+        <a href="module-patterns-Walker.html#__newID">module:patterns~Walker#__newID</a>
+    </li></dd>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="patterns.js.html">patterns.js</a>, <a href="patterns.js.html#line1046">line 1046</a>
+    </li></ul></dd>
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+
+    
+
+    
+    
+    
+    
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    <p>The new id.</p>
+</div>
+
+
+
+<dl>
+	<dt>
+		Type
+	</dt>
+	<dd>
+		
+<span class="param-type">integer</span>
+
+
+	</dd>
+</dl>
+
+        
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <h4 class="name" id="_clone"><span class="type-signature">&lt;private> </span>_clone<span class="signature">(memo)</span><span class="type-signature"></span></h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        <p>Helper function for clone. Code that is not part of the Walker
+family would call clone() whereas Walker and its derived classes
+call _clone() with the appropriate memo.</p>
+    </div>
+    
+
+    
+    
+    
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params">
+    <thead>
+	<tr>
+		
+		<th>Name</th>
+		
+		
+		<th>Type</th>
+		
+		
+		
+		
+		
+		<th class="last">Description</th>
+	</tr>
+	</thead>
+	
+	<tbody>
+	
+	
+        <tr>
+            
+                <td class="name"><code>memo</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type"><a href="module-hashstructs-HashMap.html">module:hashstructs~HashMap</a></span>
+
+
+            
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last"><p>A mapping of old object to
+copy object. As a tree of patterns is being cloned, this memo is
+populated. So if A is cloned to B then a mapping from A to B is
+stored in the memo. If A is seen again in the same cloning
+operation, then it will be substituted with B instead of creating a
+new object.</p></td>
+        </tr>
+	
+	
+	</tbody>
+</table>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    <dt class="inherited-from">Inherited From:</dt>
+    <dd class="inherited-from"><ul class="dummy"><li>
+        <a href="module-patterns-Walker.html#_clone">module:patterns~Walker#_clone</a>
+    </li></dd>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="patterns.js.html">patterns.js</a>, <a href="patterns.js.html#line1159">line 1159</a>
+    </li></ul></dd>
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+
+    
+
+    
+    
+    
+    
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    <p>An new object of the same class as the one being
+cloned. The new object is a clone.</p>
+</div>
+
+
+
+        
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <h4 class="name" id="_copyInto"><span class="type-signature">&lt;private> </span>_copyInto<span class="signature">(obj, memo)</span><span class="type-signature"></span></h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        <p>Helper method for clone() and _clone(). All classes deriving
+from Walker must implement their own version of this
+function so that they copy and clone their fields as needed.</p>
+    </div>
+    
+
+    
+    
+    
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params">
+    <thead>
+	<tr>
+		
+		<th>Name</th>
+		
+		
+		<th>Type</th>
+		
+		
+		
+		
+		
+		<th class="last">Description</th>
+	</tr>
+	</thead>
+	
+	<tbody>
+	
+	
+        <tr>
+            
+                <td class="name"><code>obj</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type"><a href="module-patterns-Pattern.html">module:patterns~Pattern</a></span>
+
+
+            
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last"><p>Object into which we must copy
+the fields of this object.</p></td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>memo</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type"><a href="module-hashstructs-HashMap.html">module:hashstructs~HashMap</a></span>
+
+
+            
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last"><p>The memo that contains the
+copy mappings.  See <a href="module-patterns-Walker.html#clone"><code>clone()</code></a>
+above.</p></td>
+        </tr>
+	
+	
+	</tbody>
+</table>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    <dt class="inherited-from">Inherited From:</dt>
+    <dd class="inherited-from"><ul class="dummy"><li>
+        <a href="module-patterns-Walker.html#_copyInto">module:patterns~Walker#_copyInto</a>
+    </li></dd>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="patterns.js.html">patterns.js</a>, <a href="patterns.js.html#line1183">line 1183</a>
+    </li></ul></dd>
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+
+    
+
+    
+    
+    
+    
+    
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <h4 class="name" id="_possible"><span class="type-signature">&lt;private> </span>_possible<span class="signature">()</span><span class="type-signature"> &rarr; {<a href="module-set-Set.html">module:set~Set</a>}</span></h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        <p>Helper method for possible(). The possible() method is designed
+to be safe, in that the value it returns is not shared, so the
+caller may change it without breaking anything. However, this
+method returns a value that may not be modified by the
+caller. It is used internally among the classes of this file to
+save copying time.</p>
+    </div>
+    
+
+    
+    
+    
+    
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    <dt class="inherited-from">Inherited From:</dt>
+    <dd class="inherited-from"><ul class="dummy"><li>
+        <a href="module-patterns-Walker.html#_possible">module:patterns~Walker#_possible</a>
+    </li></dd>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="patterns.js.html">patterns.js</a>, <a href="patterns.js.html#line1088">line 1088</a>
+    </li></ul></dd>
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+
+    
+
+    
+    
+    
+    
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    <p>The set of events that can be fired without
+resulting in an error.</p>
+</div>
+
+
+
+<dl>
+	<dt>
+		Type
+	</dt>
+	<dd>
+		
+<span class="param-type"><a href="module-set-Set.html">module:set~Set</a></span>
+
+
+	</dd>
+</dl>
+
+        
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <h4 class="name" id="_suppressAttributes"><span class="type-signature">&lt;private> </span>_suppressAttributes<span class="signature">()</span><span class="type-signature"></span></h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        <p>Helper function used to prevent Walker objects from reporting
+attribute events as possible. In RelaxNG it is normal to mix
+attributes and elements in patterns. However, XML validation
+segregates attributes and elements. Once a start tag has been
+processed, attributes are not possible until a new start tag
+begins. For instance, if a Walker is processing <code>&lt;foo
+a=&quot;1&quot;&gt;</code>, as soon as the greater than symbol is encountered,
+attribute
+events are no longer possible. This function informs the Walker
+of this fact.</p>
+    </div>
+    
+
+    
+    
+    
+    
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    <dt class="inherited-from">Inherited From:</dt>
+    <dd class="inherited-from"><ul class="dummy"><li>
+        <a href="module-patterns-Walker.html#_suppressAttributes">module:patterns~Walker#_suppressAttributes</a>
+    </li></dd>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="patterns.js.html">patterns.js</a>, <a href="patterns.js.html#line1205">line 1205</a>
+    </li></ul></dd>
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+
+    
+
+    
+    
+    
+    
+    
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <h4 class="name" id="canEnd"><span class="type-signature"></span>canEnd<span class="signature">()</span><span class="type-signature"> &rarr; {boolean}</span></h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        <p>Can this Walker validly end after the previous event fired?</p>
+    </div>
+    
+
+    
+    
+    
+    
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    <dt class="inherited-from">Inherited From:</dt>
+    <dd class="inherited-from"><ul class="dummy"><li>
+        <a href="module-patterns-Walker.html#canEnd">module:patterns~Walker#canEnd</a>
+    </li></dd>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="patterns.js.html">patterns.js</a>, <a href="patterns.js.html#line1117">line 1117</a>
+    </li></ul></dd>
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+
+    
+
+    
+    
+    
+    
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    <p><code>true</code> if the walker can validly end
+here. <code>false</code> otherwise.</p>
+</div>
+
+
+
+<dl>
+	<dt>
+		Type
+	</dt>
+	<dd>
+		
+<span class="param-type">boolean</span>
+
+
+	</dd>
+</dl>
+
+        
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <h4 class="name" id="clone"><span class="type-signature"></span>clone<span class="signature">()</span><span class="type-signature"> &rarr; {Walker}</span></h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        <p>Deep copy the Walker.</p>
+    </div>
+    
+
+    
+    
+    
+    
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    <dt class="inherited-from">Inherited From:</dt>
+    <dd class="inherited-from"><ul class="dummy"><li>
+        <a href="module-patterns-Walker.html#clone">module:patterns~Walker#clone</a>
+    </li></dd>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="patterns.js.html">patterns.js</a>, <a href="patterns.js.html#line1139">line 1139</a>
+    </li></ul></dd>
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+
+    
+
+    
+    
+    
+    
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    <p>A deep copy of the Walker.</p>
+</div>
+
+
+
+<dl>
+	<dt>
+		Type
+	</dt>
+	<dd>
+		
+<span class="param-type">Walker</span>
+
+
+	</dd>
+</dl>
+
+        
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <h4 class="name" id="end"><span class="type-signature"></span>end<span class="signature">()</span><span class="type-signature"> &rarr; {boolean|Array.&lt;<a href="module-patterns-ValidationError.html">module:patterns~ValidationError</a>>}</span></h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        <p>This method ends the Walker processing. It should not see any
+further events after end is called.</p>
+    </div>
+    
+
+    
+    
+    
+    
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    <dt class="inherited-from">Inherited From:</dt>
+    <dd class="inherited-from"><ul class="dummy"><li>
+        <a href="module-patterns-Walker.html#end">module:patterns~Walker#end</a>
+    </li></dd>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="patterns.js.html">patterns.js</a>, <a href="patterns.js.html#line1130">line 1130</a>
+    </li></ul></dd>
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+
+    
+
+    
+    
+    
+    
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    <p><code>false</code> if the walker ended without error. Otherwise, a
+list of <a href="module-patterns-ValidationError.html"><code>ValidationError</code></a>
+objects.</p>
+</div>
+
+
+
+<dl>
+	<dt>
+		Type
+	</dt>
+	<dd>
+		
+<span class="param-type">boolean</span>
+|
+
+<span class="param-type">Array.&lt;<a href="module-patterns-ValidationError.html">module:patterns~ValidationError</a>></span>
+
+
+	</dd>
+</dl>
+
+        
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <h4 class="name" id="fireEvent"><span class="type-signature"></span>fireEvent<span class="signature">(ev)</span><span class="type-signature"> &rarr; {false|undefined|Array.&lt;<a href="module-patterns-ValidationError.html">module:patterns~ValidationError</a>>}</span></h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        <p>Passes an event to the walker for handling. The Walker will
+determine whether it or one of its children can handle the
+event.</p>
+    </div>
+    
+
+    
+    
+    
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params">
+    <thead>
+	<tr>
+		
+		<th>Name</th>
+		
+		
+		<th>Type</th>
+		
+		
+		
+		
+		
+		<th class="last">Description</th>
+	</tr>
+	</thead>
+	
+	<tbody>
+	
+	
+        <tr>
+            
+                <td class="name"><code>ev</code></td>
+            
+            
+            <td class="type">
+            
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last"><p>The event to handle.</p></td>
+        </tr>
+	
+	
+	</tbody>
+</table>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    <dt class="inherited-from">Inherited From:</dt>
+    <dd class="inherited-from"><ul class="dummy"><li>
+        <a href="module-patterns-Walker.html#fireEvent">module:patterns~Walker#fireEvent</a>
+    </li></dd>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="patterns.js.html">patterns.js</a>, <a href="patterns.js.html#line1107">line 1107</a>
+    </li></ul></dd>
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+
+    
+
+    
+    
+    
+    
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    <p>The value
+<code>false</code> if there was no error. The value
+<code>undefined</code> if no walker matches the pattern. Otherwise,
+an array of <a href="module-patterns-ValidationError.html"><code>ValidationError</code></a>
+objects.</p>
+</div>
+
+
+
+<dl>
+	<dt>
+		Type
+	</dt>
+	<dd>
+		
+<span class="param-type">false</span>
+|
+
+<span class="param-type">undefined</span>
+|
+
+<span class="param-type">Array.&lt;<a href="module-patterns-ValidationError.html">module:patterns~ValidationError</a>></span>
+
+
+	</dd>
+</dl>
+
+        
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <h4 class="name" id="hash"><span class="type-signature"></span>hash<span class="signature">()</span><span class="type-signature"> &rarr; {integer}</span></h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        <p>This method is mainly used to be able to use Walker objects in a
+<a href="module-hashstructs-HashSet.html"><code>HashSet</code></a> or a <a href="module-hashstructs-HashMap.html"><code>HashMap</code></a>.</p>
+
+<p>Returns a hash guaranteed to be unique to this object. There are
+some limitations. First, if this module is instantiated twice, the
+objects created by the two instances cannot mix without violating
+the uniqueness guarantee. Second, the hash is a monotonically
+increasing counter, so when it reaches beyond the maximum integer
+that the JavaScript vm can handle, things go kaboom.</p>
+    </div>
+    
+
+    
+    
+    
+    
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    <dt class="inherited-from">Inherited From:</dt>
+    <dd class="inherited-from"><ul class="dummy"><li>
+        <a href="module-patterns-Walker.html#hash">module:patterns~Walker#hash</a>
+    </li></dd>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="patterns.js.html">patterns.js</a>, <a href="patterns.js.html#line1064">line 1064</a>
+    </li></ul></dd>
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+
+    
+
+    
+    
+    
+    
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    <p>A number unique to this object.</p>
+</div>
+
+
+
+<dl>
+	<dt>
+		Type
+	</dt>
+	<dd>
+		
+<span class="param-type">integer</span>
+
+
+	</dd>
+</dl>
+
+        
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <h4 class="name" id="possible"><span class="type-signature"></span>possible<span class="signature">()</span><span class="type-signature"> &rarr; {<a href="module-set-Set.html">module:set~Set</a>}</span></h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        <p>Fetch the set of possible events at the current stage of parsing.</p>
+    </div>
+    
+
+    
+    
+    
+    
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    <dt class="inherited-from">Inherited From:</dt>
+    <dd class="inherited-from"><ul class="dummy"><li>
+        <a href="module-patterns-Walker.html#possible">module:patterns~Walker#possible</a>
+    </li></dd>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="patterns.js.html">patterns.js</a>, <a href="patterns.js.html#line1072">line 1072</a>
+    </li></ul></dd>
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+
+    
+
+    
+    
+    
+    
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    <p>The set of events that can be fired
+without resulting in an error.</p>
+</div>
+
+
+
+<dl>
+	<dt>
+		Type
+	</dt>
+	<dd>
+		
+<span class="param-type"><a href="module-set-Set.html">module:set~Set</a></span>
+
+
+	</dd>
+</dl>
+
+        
+    
+    
+</dd>
+
+        </dl>
+    
+    
+    
+    
+    
+</article>
+
+</section>  
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Index</a></h2><h3>Modules</h3><ul><li><a href="module-formats.html">formats</a></li><li><a href="module-hashstructs.html">hashstructs</a></li><li><a href="module-name_resolver.html">name_resolver</a></li><li><a href="module-oop.html">oop</a></li><li><a href="module-patterns.html">patterns</a></li><li><a href="module-set.html">set</a></li><li><a href="module-util.html">util</a></li><li><a href="module-validate.html">validate</a></li></ul><h3>Classes</h3><ul><li><a href="module-formats-V1JSONWalker.html">formats~V1JSONWalker</a></li><li><a href="module-hashstructs-HashBase.html">hashstructs~HashBase</a></li><li><a href="module-hashstructs-HashMap.html">hashstructs~HashMap</a></li><li><a href="module-hashstructs-HashSet.html">hashstructs~HashSet</a></li><li><a href="module-name_resolver-NameResolver.html">name_resolver~NameResolver</a></li><li><a href="module-patterns-Attribute.html">patterns~Attribute</a></li><li><a href="module-patterns-AttributeNameError.html">patterns~AttributeNameError</a></li><li><a href="module-patterns-AttributeValueError.html">patterns~AttributeValueError</a></li><li><a href="module-patterns-AttributeWalker.html">patterns~AttributeWalker</a></li><li><a href="module-patterns-Choice.html">patterns~Choice</a></li><li><a href="module-patterns-ChoiceError.html">patterns~ChoiceError</a></li><li><a href="module-patterns-ChoiceWalker.html">patterns~ChoiceWalker</a></li><li><a href="module-patterns-Define.html">patterns~Define</a></li><li><a href="module-patterns-DefineWalker.html">patterns~DefineWalker</a></li><li><a href="module-patterns-DisallowedElementWalker.html">patterns~DisallowedElementWalker</a></li><li><a href="module-patterns-Element.html">patterns~Element</a></li><li><a href="module-patterns-ElementNameError.html">patterns~ElementNameError</a></li><li><a href="module-patterns-ElementWalker.html">patterns~ElementWalker</a></li><li><a href="module-patterns-Empty.html">patterns~Empty</a></li><li><a href="module-patterns-EmptyWalker.html">patterns~EmptyWalker</a></li><li><a href="module-patterns-EName.html">patterns~EName</a></li><li><a href="module-patterns-Event.html">patterns~Event</a></li><li><a href="module-patterns-Grammar.html">patterns~Grammar</a></li><li><a href="module-patterns-GrammarWalker.html">patterns~GrammarWalker</a></li><li><a href="module-patterns-Group.html">patterns~Group</a></li><li><a href="module-patterns-GroupWalker.html">patterns~GroupWalker</a></li><li><a href="module-patterns-NoSubwalker.html">patterns~NoSubwalker</a></li><li><a href="module-patterns-NotAllowed.html">patterns~NotAllowed</a></li><li><a href="module-patterns-OneOrMore.html">patterns~OneOrMore</a></li><li><a href="module-patterns-OneOrMoreWalker.html">patterns~OneOrMoreWalker</a></li><li><a href="module-patterns-Pattern.html">patterns~Pattern</a></li><li><a href="module-patterns-PatternOnePattern.html">patterns~PatternOnePattern</a></li><li><a href="module-patterns-PatternTwoPatterns.html">patterns~PatternTwoPatterns</a></li><li><a href="module-patterns-Ref.html">patterns~Ref</a></li><li><a href="module-patterns-ReferenceError.html">patterns~ReferenceError</a></li><li><a href="module-patterns-RefWalker.html">patterns~RefWalker</a></li><li><a href="module-patterns-SingleNameError.html">patterns~SingleNameError</a></li><li><a href="module-patterns-SingleSubwalker.html">patterns~SingleSubwalker</a></li><li><a href="module-patterns-Text.html">patterns~Text</a></li><li><a href="module-patterns-TextWalker.html">patterns~TextWalker</a></li><li><a href="module-patterns-ValidationError.html">patterns~ValidationError</a></li><li><a href="module-patterns-Walker.html">patterns~Walker</a></li><li><a href="module-set-Set.html">set~Set</a></li></ul>
+</nav>
+
+<br clear="both">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.2.2</a> on Thu Dec 12 2013 18:26:50 GMT-0600 (CST)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

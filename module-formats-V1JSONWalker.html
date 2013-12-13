@@ -1,0 +1,902 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Class: V1JSONWalker</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+    <link type="text/css" rel="stylesheet" href="styles/mangalam.css">
+</head>
+
+<body>
+
+
+<div id="main">
+
+    <h1 class="page-title">Class: V1JSONWalker</h1>
+
+    
+
+
+
+<section>
+    
+<header>
+    <h2>
+        <span class="ancestors"><a href="module-formats.html">formats</a>~</span>
+    
+    V1JSONWalker
+    </h2>
+    
+</header>  
+
+<article>
+    <div class="container-overview">
+    
+    
+    
+        
+<dt>
+    <h4 class="name" id="V1JSONWalker"><span class="type-signature">&lt;private> </span>new V1JSONWalker<span class="signature">(options)</span><span class="type-signature"></span></h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        <p>A class for walking the JSON object representing a schema.</p>
+    </div>
+    
+
+    
+    
+    
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params">
+    <thead>
+	<tr>
+		
+		<th>Name</th>
+		
+		
+		<th>Type</th>
+		
+		
+		
+		
+		
+		<th class="last">Description</th>
+	</tr>
+	</thead>
+	
+	<tbody>
+	
+	
+        <tr>
+            
+                <td class="name"><code>options</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last"><p>The options object from the file that
+contains the schema.</p></td>
+        </tr>
+	
+	
+	</tbody>
+</table>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="formats.js.html">formats.js</a>, <a href="formats.js.html#line141">line 141</a>
+    </li></ul></dd>
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+
+    
+
+    
+    
+    
+    
+    
+    
+    
+</dd>
+
+    
+    </div>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+        <h3 class="subsection-title">Methods</h3>
+        
+        <dl>
+            
+<dt>
+    <h4 class="name" id="_processArray"><span class="type-signature">&lt;private> </span>_processArray<span class="signature">(arr)</span><span class="type-signature"> &rarr; {Array}</span></h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        <p>Resolve an array according to format V1. For each element, if the
+element is an array, it is resolved. If the element is an object,
+then the object is constructed. Otherwise, the element remains as
+is.</p>
+    </div>
+    
+
+    
+    
+    
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params">
+    <thead>
+	<tr>
+		
+		<th>Name</th>
+		
+		
+		<th>Type</th>
+		
+		
+		
+		
+		
+		<th class="last">Description</th>
+	</tr>
+	</thead>
+	
+	<tbody>
+	
+	
+        <tr>
+            
+                <td class="name"><code>arr</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">Array</span>
+
+
+            
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last"><p>The array to resolve.</p></td>
+        </tr>
+	
+	
+	</tbody>
+</table>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="formats.js.html">formats.js</a>, <a href="formats.js.html#line230">line 230</a>
+    </li></ul></dd>
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+
+    
+
+    
+    
+    
+    <h5>Throws:</h5>
+    
+            
+
+<dl>
+    <dt>
+        <div class="param-desc">
+        If the array is malformed.
+        </div>
+    </dt>
+    <dt>
+        <dl>
+            <dt>
+                Type
+            </dt>
+            <dd>
+                
+<span class="param-type">Error</span>
+
+
+            </dd>
+        </dl>
+    </dt>
+</dl>
+
+
+        
+    
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    <p>The processed array.</p>
+</div>
+
+
+
+<dl>
+	<dt>
+		Type
+	</dt>
+	<dd>
+		
+<span class="param-type">Array</span>
+
+
+	</dd>
+</dl>
+
+        
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <h4 class="name" id="_processArrayForCtor"><span class="type-signature">&lt;private> </span>_processArrayForCtor<span class="signature">(arr)</span><span class="type-signature"> &rarr; {Array}</span></h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        <p>Process an array so that it can be used by a constructor.</p>
+    </div>
+    
+
+    
+    
+    
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params">
+    <thead>
+	<tr>
+		
+		<th>Name</th>
+		
+		
+		<th>Type</th>
+		
+		
+		
+		
+		
+		<th class="last">Description</th>
+	</tr>
+	</thead>
+	
+	<tbody>
+	
+	
+        <tr>
+            
+                <td class="name"><code>arr</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">Array</span>
+
+
+            
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last"><p>The array to resolve.</p></td>
+        </tr>
+	
+	
+	</tbody>
+</table>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="formats.js.html">formats.js</a>, <a href="formats.js.html#line213">line 213</a>
+    </li></ul></dd>
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+
+    
+
+    
+    
+    
+    <h5>Throws:</h5>
+    
+            
+
+<dl>
+    <dt>
+        <div class="param-desc">
+        If the array is malformed.
+        </div>
+    </dt>
+    <dt>
+        <dl>
+            <dt>
+                Type
+            </dt>
+            <dd>
+                
+<span class="param-type">Error</span>
+
+
+            </dd>
+        </dl>
+    </dt>
+</dl>
+
+
+        
+    
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    <p>The processed array.</p>
+</div>
+
+
+
+<dl>
+	<dt>
+		Type
+	</dt>
+	<dd>
+		
+<span class="param-type">Array</span>
+
+
+	</dd>
+</dl>
+
+        
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <h4 class="name" id="_processObject"><span class="type-signature"></span>_processObject<span class="signature">(array, ctor, args)</span><span class="type-signature"> &rarr; {Object|undefined}</span></h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        <p>Processes an object. Derived classes will want to override this
+method to perform their work.</p>
+    </div>
+    
+
+    
+    
+    
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params">
+    <thead>
+	<tr>
+		
+		<th>Name</th>
+		
+		
+		<th>Type</th>
+		
+		
+		
+		
+		
+		<th class="last">Description</th>
+	</tr>
+	</thead>
+	
+	<tbody>
+	
+	
+        <tr>
+            
+                <td class="name"><code>array</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">Array</span>
+
+
+            
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last"><p>The object represented as an array.</p></td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>ctor</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+            
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last"><p>The object's constructor.</p></td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>args</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">Array</span>
+
+
+            
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last"><p>The arguments that should be passed to the
+constructor.</p></td>
+        </tr>
+	
+	
+	</tbody>
+</table>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="formats.js.html">formats.js</a>, <a href="formats.js.html#line201">line 201</a>
+    </li></ul></dd>
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+
+    
+
+    
+    
+    
+    
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    <p>If the <code>V1JSONWalker</code>
+instance is meant to convert the JSON data, then this method should
+return an Object. If the <code>V1JSONWalker</code> instance is
+meant to check the JSON data, then it should return
+<code>undefined</code>.</p>
+</div>
+
+
+
+<dl>
+	<dt>
+		Type
+	</dt>
+	<dd>
+		
+<span class="param-type">Object</span>
+|
+
+<span class="param-type">undefined</span>
+
+
+	</dd>
+</dl>
+
+        
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <h4 class="name" id="walkObject"><span class="type-signature">&lt;private> </span>walkObject<span class="signature">(array)</span><span class="type-signature"> &rarr; {Object}</span></h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        <p>Walks a V1 representation of a JavaScript object.</p>
+    </div>
+    
+
+    
+    
+    
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params">
+    <thead>
+	<tr>
+		
+		<th>Name</th>
+		
+		
+		<th>Type</th>
+		
+		
+		
+		
+		
+		<th class="last">Description</th>
+	</tr>
+	</thead>
+	
+	<tbody>
+	
+	
+        <tr>
+            
+                <td class="name"><code>array</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">Array</span>
+
+
+            
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last"><p>The array representing the object.</p></td>
+        </tr>
+	
+	
+	</tbody>
+</table>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="formats.js.html">formats.js</a>, <a href="formats.js.html#line154">line 154</a>
+    </li></ul></dd>
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+
+    
+
+    
+    
+    
+    <h5>Throws:</h5>
+    
+            
+
+<dl>
+    <dt>
+        <div class="param-desc">
+        If the object is malformed.
+        </div>
+    </dt>
+    <dt>
+        <dl>
+            <dt>
+                Type
+            </dt>
+            <dd>
+                
+<span class="param-type">Error</span>
+
+
+            </dd>
+        </dl>
+    </dt>
+</dl>
+
+
+        
+    
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    <p>The return value of <a href="module-formats-V1JSONWalker.html#_processObject"><code>_processObject</code></a>.</p>
+</div>
+
+
+
+<dl>
+	<dt>
+		Type
+	</dt>
+	<dd>
+		
+<span class="param-type">Object</span>
+
+
+	</dd>
+</dl>
+
+        
+    
+    
+</dd>
+
+        </dl>
+    
+    
+    
+    
+    
+</article>
+
+</section>  
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Index</a></h2><h3>Modules</h3><ul><li><a href="module-formats.html">formats</a></li><li><a href="module-hashstructs.html">hashstructs</a></li><li><a href="module-name_resolver.html">name_resolver</a></li><li><a href="module-oop.html">oop</a></li><li><a href="module-patterns.html">patterns</a></li><li><a href="module-set.html">set</a></li><li><a href="module-util.html">util</a></li><li><a href="module-validate.html">validate</a></li></ul><h3>Classes</h3><ul><li><a href="module-formats-V1JSONWalker.html">formats~V1JSONWalker</a></li><li><a href="module-hashstructs-HashBase.html">hashstructs~HashBase</a></li><li><a href="module-hashstructs-HashMap.html">hashstructs~HashMap</a></li><li><a href="module-hashstructs-HashSet.html">hashstructs~HashSet</a></li><li><a href="module-name_resolver-NameResolver.html">name_resolver~NameResolver</a></li><li><a href="module-patterns-Attribute.html">patterns~Attribute</a></li><li><a href="module-patterns-AttributeNameError.html">patterns~AttributeNameError</a></li><li><a href="module-patterns-AttributeValueError.html">patterns~AttributeValueError</a></li><li><a href="module-patterns-AttributeWalker.html">patterns~AttributeWalker</a></li><li><a href="module-patterns-Choice.html">patterns~Choice</a></li><li><a href="module-patterns-ChoiceError.html">patterns~ChoiceError</a></li><li><a href="module-patterns-ChoiceWalker.html">patterns~ChoiceWalker</a></li><li><a href="module-patterns-Define.html">patterns~Define</a></li><li><a href="module-patterns-DefineWalker.html">patterns~DefineWalker</a></li><li><a href="module-patterns-DisallowedElementWalker.html">patterns~DisallowedElementWalker</a></li><li><a href="module-patterns-Element.html">patterns~Element</a></li><li><a href="module-patterns-ElementNameError.html">patterns~ElementNameError</a></li><li><a href="module-patterns-ElementWalker.html">patterns~ElementWalker</a></li><li><a href="module-patterns-Empty.html">patterns~Empty</a></li><li><a href="module-patterns-EmptyWalker.html">patterns~EmptyWalker</a></li><li><a href="module-patterns-EName.html">patterns~EName</a></li><li><a href="module-patterns-Event.html">patterns~Event</a></li><li><a href="module-patterns-Grammar.html">patterns~Grammar</a></li><li><a href="module-patterns-GrammarWalker.html">patterns~GrammarWalker</a></li><li><a href="module-patterns-Group.html">patterns~Group</a></li><li><a href="module-patterns-GroupWalker.html">patterns~GroupWalker</a></li><li><a href="module-patterns-NoSubwalker.html">patterns~NoSubwalker</a></li><li><a href="module-patterns-NotAllowed.html">patterns~NotAllowed</a></li><li><a href="module-patterns-OneOrMore.html">patterns~OneOrMore</a></li><li><a href="module-patterns-OneOrMoreWalker.html">patterns~OneOrMoreWalker</a></li><li><a href="module-patterns-Pattern.html">patterns~Pattern</a></li><li><a href="module-patterns-PatternOnePattern.html">patterns~PatternOnePattern</a></li><li><a href="module-patterns-PatternTwoPatterns.html">patterns~PatternTwoPatterns</a></li><li><a href="module-patterns-Ref.html">patterns~Ref</a></li><li><a href="module-patterns-ReferenceError.html">patterns~ReferenceError</a></li><li><a href="module-patterns-RefWalker.html">patterns~RefWalker</a></li><li><a href="module-patterns-SingleNameError.html">patterns~SingleNameError</a></li><li><a href="module-patterns-SingleSubwalker.html">patterns~SingleSubwalker</a></li><li><a href="module-patterns-Text.html">patterns~Text</a></li><li><a href="module-patterns-TextWalker.html">patterns~TextWalker</a></li><li><a href="module-patterns-ValidationError.html">patterns~ValidationError</a></li><li><a href="module-patterns-Walker.html">patterns~Walker</a></li><li><a href="module-set-Set.html">set~Set</a></li></ul>
+</nav>
+
+<br clear="both">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.2.2</a> on Thu Dec 12 2013 18:26:48 GMT-0600 (CST)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

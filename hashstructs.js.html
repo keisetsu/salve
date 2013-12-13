@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: hashstructs.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+    <link type="text/css" rel="stylesheet" href="styles/mangalam.css">
+</head>
+
+<body>
+
+
+<div id="main">
+
+    <h1 class="page-title">Source: hashstructs.js</h1>
+
+    
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source"><code>/**
+ * @module hashstructs
+ * @desc {@link module:hashstructs~HashSet HashSet} and {@link
+ * module:hashstructs~HashMap HashMap} implementations.
+ * @author Louis-Dominique Dubeau
+ * @license MPL 2.0
+ * @copyright 2013 Mangalam Research Center for Buddhist Languages
+ */
+define(/** @lends module:hashstructs */ function (require, exports, module) {
+'use strict';
+
+var inherit = require("./oop").inherit;
+
+/**
+ * @classdesc The HashBase class provides a base class for the {@link
+ * module:hashstructs~HashSet HashSet} and {@link
+ * module:hashstructs~HashMap HashMap} classes.
+ *
+ * @param {Function} hash_f A function which returns a uniquely
+ * identifying hash when called with an object that a
+ * &lt;code>HashBase&lt;/code> instance uses. Note that it is a valid
+ * implementation strategy for the hash function to know how to handle
+ * only a certain type of object, and not everything under the
+ * sun. This entails that a &lt;code>HashBase&lt;/code> object using this
+ * hash function can only contain objects of the type that the hash
+ * function knows how to handle.
+ *
+ * @param {Object} [initial] An initial value for the object being
+ * constructed.
+ *
+ * @constructor
+ */
+function HashBase(hash_f, initial) {
+    this.hash_f = hash_f;
+    this.backing = Object.create(null);
+    this._size = 0;
+
+    if (initial !== undefined) {
+        if (initial instanceof HashBase) {
+            var backing = this.backing;
+            var initial_backing = initial.backing;
+            var keys = Object.keys(initial_backing);
+            for(var keys_ix = 0, key; (key = keys[keys_ix++]) !== undefined; )
+                backing[key] = initial_backing[key];
+            this._size = keys.length;
+
+        }
+        else if (initial instanceof Array)
+            for (var i = 0; i &lt; initial.length; ++i)
+                this.add(initial[i]);
+        else
+            this.add(initial);
+    }
+}
+
+HashBase.prototype.hash_f = undefined;
+HashBase.prototype.backing = undefined;
+HashBase.prototype._size = 0;
+
+/**
+ * Record a hash and value pair into the backing store. Effectively
+ * associates the hash with the value. This method assumes but does
+ * not verify that the mapping from hash to value is unique. This
+ * method cannot be used to &lt;strong>change&lt;/strong> such mapping.
+ *
+ * @private
+ * @param hash Hash to which to associate the value. Can be any type
+ * that can be used as an array index.
+ * @param val The value to associate with the hash.
+ * @throws {Error} If the hash is undefined or null.
+ */
+HashBase.prototype._store = function (hash, val) {
+    if (hash === undefined || hash === null)
+        throw new Error("undefined or null hash");
+    if (this.backing[hash] === undefined) {
+        this.backing[hash] = val;
+        this._size++;
+    }
+    // else noop
+};
+
+/**
+ * Unites this object with another object. This method modifies the
+ * object upon which it is called so as to make it a mathematical
+ * union of the two objects.
+ *
+ * @param s The object to unite with this one. Must be of the same
+ * class as this object.
+ * @throws {Error} If &lt;code>s&lt;/code> is not of the same type as this
+ * object.
+ */
+HashBase.prototype.union = function (s) {
+    if (s === null || s === undefined)
+        return;
+
+    if (!(s instanceof this.constructor))
+        throw new Error("union invalid class object; my class " +
+                        this.constructor.name +
+                        " other class " + s.constructor.name);
+
+    var backing = s.backing;
+    var keys = Object.keys(backing);
+    for(var keys_ix = 0, key; (key = keys[keys_ix++]) !== undefined; )
+        this._store(key, backing[key]);
+};
+
+/**
+ * Applies a function on each value stored in the object.
+ *
+ * @param {Function} f A function which accepts one parameter. The
+ * function will be called on each value.
+ */
+HashBase.prototype.forEach = function (f) {
+    var backing = this.backing;
+    var keys = Object.keys(backing);
+    for(var keys_ix = 0, key; (key = keys[keys_ix++]) !== undefined; )
+        f(backing[key]);
+};
+
+/**
+ * @returns {integer} The number of values stored.
+ */
+HashBase.prototype.size = function () {
+    return this._size;
+};
+
+/**
+ * Selects a subset of values.
+ *
+ * @param {Function} f A function that selects values. It is called
+ * with each value. If the value happens to be an &lt;code>Array&lt;/code>
+ * then the function is &lt;emph>applied&lt;/emph> to this array. A return
+ * value which is truthy includes the value, otherwise the value is
+ * excluded.
+ * @returns An object of the same class as the object on which the
+ * method is called. This object contains only the value selected by
+ * the function.
+ */
+HashBase.prototype.filter = function (f) {
+    var ret = new this.constructor();
+    if (ret.hash_f === undefined)
+        ret.hash_f = this.hash_f;
+    var backing = this.backing;
+    var keys = Object.keys(backing);
+    for(var keys_ix = 0, key; (key = keys[keys_ix++]) !== undefined; ) {
+        var data = backing[key];
+        var args = data instanceof Array?data:[data];
+        if (f.apply(undefined, args)) {
+            ret._store(key, data);
+        }
+    }
+    return ret;
+};
+
+/**
+ * Tests whether a value is contained in the object on which this
+ * method is called.
+ *
+ * @param obj The value for which to test.
+ * @returns {boolean} &lt;code>true&lt;/code> if the value is present,
+ * &lt;code>false&lt;/code> if not.
+ */
+HashBase.prototype.has = function(obj) {
+    var hash = this.hash_f(obj);
+    return this.backing[hash];
+};
+
+/**
+ * Converts the object on which this method is called to a string.
+ *
+ * @returns {string} All the values, joined with ", ".
+ */
+HashBase.prototype.toString = function () {
+    return this.toArray().join(", ");
+};
+
+/**
+ * Converts the object on which this method is called to an array.
+ *
+ * @returns {Array} An array that corresponds to the object.
+ *
+ */
+HashBase.prototype.toArray = function () {
+    var t = [];
+    var backing = this.backing;
+    var keys = Object.keys(backing);
+    for(var keys_ix = 0, key; (key = keys[keys_ix++]) !== undefined; ) {
+        t.push(backing[key]);
+    }
+    return t;
+};
+
+/**
+ * @classdesc A set of objects. The objects are distinguished by a
+ * hash function.
+ *
+ * @extends module:hashstructs~HashBase
+ *
+ * @param {Function} hash_f A function which returns a uniquely
+ * identifying hash when called with an object that a
+ * &lt;code>HashSet&lt;/code> instance uses. Note that it is a valid
+ * implementation strategy for the hash function to know how to handle
+ * only a certain type of object, and not everything under the
+ * sun. This entails that a &lt;code>HashSet&lt;/code> object using this
+ * hash function can only contain objects of the type that the hash
+ * function knows how to handle.
+ *
+ * @param {Object} [initial] An initial value for the object being
+ * constructed.
+ *
+ * @constructor
+ */
+function HashSet() {
+    HashBase.apply(this, arguments);
+}
+inherit(HashSet, HashBase);
+
+/**
+ * Adds a value to the set.
+ *
+ * @param x The value to add.
+ */
+HashSet.prototype.add = function (x) {
+    this._store(this.hash_f(x), x);
+};
+
+/**
+ * @classdesc A map of (key, value) pairs. The keys are distinguished
+ * by means of a hash function.
+ *
+ * @extends module:hashstructs~HashBase
+ *
+ * @param {Function} hash_f A function which returns a uniquely
+ * identifying hash when called with an object that a
+ * &lt;code>HashMap&lt;/code> instance uses. Note that it is a valid
+ * implementation strategy for the hash function to know how to handle
+ * only a certain type of object, and not everything under the
+ * sun. This entails that a &lt;code>HashMap&lt;/code> object using this
+ * hash function can only contain objects of the type that the hash
+ * function knows how to handle.
+ *
+ * @param {Object} [initial] An initial value for the object being
+ * constructed.
+ *
+ * @constructor
+ */
+function HashMap (hash_f, initial) {
+    if (initial instanceof Array)
+        throw new Error("cannot initialize a map with an array");
+    HashBase.apply(this, arguments);
+}
+inherit(HashMap, HashBase);
+
+// The arrays stored in the backing store are considered
+// immutable.
+
+/**
+ * Adds a (key, value) mapping to the map.
+ *
+ * @param key
+ * @param value
+ */
+HashMap.prototype.add = function(key, value) {
+    this._store(this.hash_f(key), [key, value]);
+};
+
+HashMap.prototype.forEach = function (f) {
+    var backing = this.backing;
+    var keys = Object.keys(backing);
+    for(var keys_ix = 0, key; (key = keys[keys_ix++]) !== undefined; )
+        f(backing[key][0], backing[key][1]);
+};
+
+HashMap.prototype.has = function(obj) {
+    var hash = this.hash_f(obj);
+    var pair = this.backing[hash];
+    if (pair !== undefined)
+        return pair[1];
+};
+
+/**
+ * Gets the keys present in this mapping.
+ *
+ * @returns {Array}
+ */
+HashMap.prototype.keys = function () {
+    return Object.keys(this.backing);
+};
+
+exports.HashSet = HashSet;
+exports.HashMap = HashMap;
+
+});
+
+//  LocalWords:  hashstructs MPL oop HashBase noop HashSet HashMap
+//  LocalWords:  Dubeau Mangalam LocalWords truthy
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Index</a></h2><h3>Modules</h3><ul><li><a href="module-formats.html">formats</a></li><li><a href="module-hashstructs.html">hashstructs</a></li><li><a href="module-name_resolver.html">name_resolver</a></li><li><a href="module-oop.html">oop</a></li><li><a href="module-patterns.html">patterns</a></li><li><a href="module-set.html">set</a></li><li><a href="module-util.html">util</a></li><li><a href="module-validate.html">validate</a></li></ul><h3>Classes</h3><ul><li><a href="module-formats-V1JSONWalker.html">formats~V1JSONWalker</a></li><li><a href="module-hashstructs-HashBase.html">hashstructs~HashBase</a></li><li><a href="module-hashstructs-HashMap.html">hashstructs~HashMap</a></li><li><a href="module-hashstructs-HashSet.html">hashstructs~HashSet</a></li><li><a href="module-name_resolver-NameResolver.html">name_resolver~NameResolver</a></li><li><a href="module-patterns-Attribute.html">patterns~Attribute</a></li><li><a href="module-patterns-AttributeNameError.html">patterns~AttributeNameError</a></li><li><a href="module-patterns-AttributeValueError.html">patterns~AttributeValueError</a></li><li><a href="module-patterns-AttributeWalker.html">patterns~AttributeWalker</a></li><li><a href="module-patterns-Choice.html">patterns~Choice</a></li><li><a href="module-patterns-ChoiceError.html">patterns~ChoiceError</a></li><li><a href="module-patterns-ChoiceWalker.html">patterns~ChoiceWalker</a></li><li><a href="module-patterns-Define.html">patterns~Define</a></li><li><a href="module-patterns-DefineWalker.html">patterns~DefineWalker</a></li><li><a href="module-patterns-DisallowedElementWalker.html">patterns~DisallowedElementWalker</a></li><li><a href="module-patterns-Element.html">patterns~Element</a></li><li><a href="module-patterns-ElementNameError.html">patterns~ElementNameError</a></li><li><a href="module-patterns-ElementWalker.html">patterns~ElementWalker</a></li><li><a href="module-patterns-Empty.html">patterns~Empty</a></li><li><a href="module-patterns-EmptyWalker.html">patterns~EmptyWalker</a></li><li><a href="module-patterns-EName.html">patterns~EName</a></li><li><a href="module-patterns-Event.html">patterns~Event</a></li><li><a href="module-patterns-Grammar.html">patterns~Grammar</a></li><li><a href="module-patterns-GrammarWalker.html">patterns~GrammarWalker</a></li><li><a href="module-patterns-Group.html">patterns~Group</a></li><li><a href="module-patterns-GroupWalker.html">patterns~GroupWalker</a></li><li><a href="module-patterns-NoSubwalker.html">patterns~NoSubwalker</a></li><li><a href="module-patterns-NotAllowed.html">patterns~NotAllowed</a></li><li><a href="module-patterns-OneOrMore.html">patterns~OneOrMore</a></li><li><a href="module-patterns-OneOrMoreWalker.html">patterns~OneOrMoreWalker</a></li><li><a href="module-patterns-Pattern.html">patterns~Pattern</a></li><li><a href="module-patterns-PatternOnePattern.html">patterns~PatternOnePattern</a></li><li><a href="module-patterns-PatternTwoPatterns.html">patterns~PatternTwoPatterns</a></li><li><a href="module-patterns-Ref.html">patterns~Ref</a></li><li><a href="module-patterns-ReferenceError.html">patterns~ReferenceError</a></li><li><a href="module-patterns-RefWalker.html">patterns~RefWalker</a></li><li><a href="module-patterns-SingleNameError.html">patterns~SingleNameError</a></li><li><a href="module-patterns-SingleSubwalker.html">patterns~SingleSubwalker</a></li><li><a href="module-patterns-Text.html">patterns~Text</a></li><li><a href="module-patterns-TextWalker.html">patterns~TextWalker</a></li><li><a href="module-patterns-ValidationError.html">patterns~ValidationError</a></li><li><a href="module-patterns-Walker.html">patterns~Walker</a></li><li><a href="module-set-Set.html">set~Set</a></li></ul>
+</nav>
+
+<br clear="both">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.2.2</a> on Thu Dec 12 2013 18:26:48 GMT-0600 (CST)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
